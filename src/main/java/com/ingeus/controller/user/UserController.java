@@ -7,6 +7,7 @@ import static com.ingeus.util.ApiConstants.V1;
 import com.ingeus.controller.user.request.UserRequest;
 import com.ingeus.controller.user.response.AddUserResponse;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @PostMapping
-    public AddUserResponse addUser(@RequestBody @Valid UserRequest userRequest) {
+    public AddUserResponse addUser(@RequestBody @Valid @NotNull UserRequest userRequest) {
         return new AddUserResponse(1L);
     }
 }

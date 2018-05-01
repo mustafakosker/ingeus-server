@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
@@ -18,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class UserRequest {
 
     @NotEmpty
-    @NonNull
+    @NotNull
     @Size(max = 200)
     private String firstName;
 
@@ -32,6 +31,6 @@ public class UserRequest {
     private LocalDate dateOfBirth;
 
     @NotNull
-    @Size(min = 6)
+    @Size(min = 6, max = 50)
     private String password;
 }
