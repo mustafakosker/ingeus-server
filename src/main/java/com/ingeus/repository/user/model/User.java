@@ -1,41 +1,45 @@
-package com.ingeus.controller.user.request;
+package com.ingeus.repository.user.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-import static com.ingeus.util.ApiConstants.DATE_FORMAT;
-
+@Entity
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRequest {
+@Builder
+public class User {
 
+    @Id
+    @GeneratedValue
     private Long id;
 
-    @NotEmpty
     @NotNull
+    @NotEmpty
     @Size(max = 200)
     private String firstName;
 
-    @NotEmpty
     @NotNull
+    @NotEmpty
     @Size(max = 200)
     private String lastName;
 
-    @JsonFormat(pattern = DATE_FORMAT)
     @NotNull
     private LocalDate dateOfBirth;
 
     @NotNull
-    @Size(min = 6, max = 50)
+    @NotEmpty
     private String password;
 }
