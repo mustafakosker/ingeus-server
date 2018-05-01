@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.ingeus</groupId>
-	<artifactId>user-api</artifactId>
+	<artifactId>ingeus-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>user-api</name>
+	<name>ingeus-server</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
