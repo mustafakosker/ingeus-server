@@ -5,10 +5,11 @@ import static com.ingeus.util.ApiConstants.USERS;
 import static com.ingeus.util.ApiConstants.V1;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.OK;
 
 import com.ingeus.UserApiApplication;
 import com.ingeus.controller.user.request.UserRequest;
-import com.ingeus.controller.user.response.AddUserResponse;
+import com.ingeus.controller.user.response.UserResponse;
 import java.time.LocalDate;
 import java.util.Collections;
 import org.junit.Before;
@@ -18,7 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -41,24 +44,23 @@ public class UserControllerTest {
     }
 
     @Test
-    public void shouldAddUserSuccessfullyWhenRequestIsValid() {
+    public void shouldSaveUserSuccessfullyWhenRequestIsValid() {
         final UserRequest userRequest = UserRequest.builder()
                 .firstName("John")
                 .lastName("Doe")
                 .dateOfBirth(LocalDate.now())
                 .password("Test124123").build();
 
-        final AddUserResponse addUserResponse = this.restTemplate
-                .postForEntity(USERS_ENDPOINT, userRequest, AddUserResponse.class)
-                .getBody();
+        ResponseEntity responseEntity = this.restTemplate
+                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
-        assertThat(addUserResponse).isEqualTo(new AddUserResponse(1L));
+        assertThat(responseEntity.getStatusCode()).isEqualTo(OK);
     }
 
     @Test
     public void shouldReturnBadRequestWhenRequestIsNull() throws Exception {
-        final ResponseEntity<AddUserResponse> responseEntity = this.restTemplate
-                .postForEntity(USERS_ENDPOINT, null, AddUserResponse.class);
+        final ResponseEntity responseEntity = this.restTemplate
+                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(null, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -71,8 +73,8 @@ public class UserControllerTest {
                 .dateOfBirth(LocalDate.now())
                 .password("Test124123").build();
 
-        final ResponseEntity<AddUserResponse> responseEntity = this.restTemplate
-                .postForEntity(USERS_ENDPOINT, userRequest, AddUserResponse.class);
+        final ResponseEntity responseEntity = this.restTemplate
+                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -85,8 +87,8 @@ public class UserControllerTest {
                 .dateOfBirth(LocalDate.now())
                 .password("Test124123").build();
 
-        final ResponseEntity<AddUserResponse> responseEntity = this.restTemplate
-                .postForEntity(USERS_ENDPOINT, userRequest, AddUserResponse.class);
+        final ResponseEntity responseEntity = this.restTemplate
+                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -99,8 +101,8 @@ public class UserControllerTest {
                 .dateOfBirth(LocalDate.now())
                 .password("Test124123").build();
 
-        final ResponseEntity<AddUserResponse> responseEntity = this.restTemplate
-                .postForEntity(USERS_ENDPOINT, userRequest, AddUserResponse.class);
+        final ResponseEntity responseEntity = this.restTemplate
+                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -113,8 +115,8 @@ public class UserControllerTest {
                 .dateOfBirth(LocalDate.now())
                 .password("Test124123").build();
 
-        final ResponseEntity<AddUserResponse> responseEntity = this.restTemplate
-                .postForEntity(USERS_ENDPOINT, userRequest, AddUserResponse.class);
+        final ResponseEntity responseEntity = this.restTemplate
+                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -127,8 +129,8 @@ public class UserControllerTest {
                 .dateOfBirth(LocalDate.now())
                 .password("Test124123").build();
 
-        final ResponseEntity<AddUserResponse> responseEntity = this.restTemplate
-                .postForEntity(USERS_ENDPOINT, userRequest, AddUserResponse.class);
+        final ResponseEntity responseEntity = this.restTemplate
+                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -141,8 +143,8 @@ public class UserControllerTest {
                 .dateOfBirth(LocalDate.now())
                 .password("Test124123").build();
 
-        final ResponseEntity<AddUserResponse> responseEntity = this.restTemplate
-                .postForEntity(USERS_ENDPOINT, userRequest, AddUserResponse.class);
+        final ResponseEntity responseEntity = this.restTemplate
+                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -155,8 +157,8 @@ public class UserControllerTest {
                 .dateOfBirth(null)
                 .password("Test124123").build();
 
-        final ResponseEntity<AddUserResponse> responseEntity = this.restTemplate
-                .postForEntity(USERS_ENDPOINT, userRequest, AddUserResponse.class);
+        final ResponseEntity responseEntity = this.restTemplate
+                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -169,8 +171,8 @@ public class UserControllerTest {
                 .dateOfBirth(LocalDate.now())
                 .password(null).build();
 
-        final ResponseEntity<AddUserResponse> responseEntity = this.restTemplate
-                .postForEntity(USERS_ENDPOINT, userRequest, AddUserResponse.class);
+        final ResponseEntity responseEntity = this.restTemplate
+                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -183,8 +185,8 @@ public class UserControllerTest {
                 .dateOfBirth(LocalDate.now())
                 .password("1234").build();
 
-        final ResponseEntity<AddUserResponse> responseEntity = this.restTemplate
-                .postForEntity(USERS_ENDPOINT, userRequest, AddUserResponse.class);
+        final ResponseEntity responseEntity = this.restTemplate
+                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -197,8 +199,8 @@ public class UserControllerTest {
                 .dateOfBirth(LocalDate.now())
                 .password(String.join("", Collections.nCopies(51, "a"))).build();
 
-        final ResponseEntity<AddUserResponse> responseEntity = this.restTemplate
-                .postForEntity(USERS_ENDPOINT, userRequest, AddUserResponse.class);
+        final ResponseEntity responseEntity = this.restTemplate
+                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
