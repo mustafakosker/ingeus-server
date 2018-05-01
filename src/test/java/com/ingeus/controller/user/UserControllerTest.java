@@ -1,17 +1,7 @@
 package com.ingeus.controller.user;
 
-import static com.ingeus.util.ApiConstants.BASE_API;
-import static com.ingeus.util.ApiConstants.USERS;
-import static com.ingeus.util.ApiConstants.V1;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.OK;
-
 import com.ingeus.UserApiApplication;
 import com.ingeus.controller.user.request.UserRequest;
-import com.ingeus.controller.user.response.UserResponse;
-import java.time.LocalDate;
-import java.util.Collections;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +14,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.time.LocalDate;
+import java.util.Collections;
+
+import static com.ingeus.util.ApiConstants.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.OK;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = UserApiApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -52,7 +50,7 @@ public class UserControllerTest {
                 .password("Test124123").build();
 
         ResponseEntity responseEntity = this.restTemplate
-                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
+                .exchange(USERS_ENDPOINT + "/1", HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(OK);
     }
@@ -60,7 +58,7 @@ public class UserControllerTest {
     @Test
     public void shouldReturnBadRequestWhenRequestIsNull() throws Exception {
         final ResponseEntity responseEntity = this.restTemplate
-                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(null, null), Void.class);
+                .exchange(USERS_ENDPOINT + "/1", HttpMethod.PUT, new HttpEntity<>(null, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -74,7 +72,7 @@ public class UserControllerTest {
                 .password("Test124123").build();
 
         final ResponseEntity responseEntity = this.restTemplate
-                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
+                .exchange(USERS_ENDPOINT + "/1", HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -88,7 +86,7 @@ public class UserControllerTest {
                 .password("Test124123").build();
 
         final ResponseEntity responseEntity = this.restTemplate
-                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
+                .exchange(USERS_ENDPOINT + "/1", HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -102,7 +100,7 @@ public class UserControllerTest {
                 .password("Test124123").build();
 
         final ResponseEntity responseEntity = this.restTemplate
-                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
+                .exchange(USERS_ENDPOINT + "/1", HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -116,7 +114,7 @@ public class UserControllerTest {
                 .password("Test124123").build();
 
         final ResponseEntity responseEntity = this.restTemplate
-                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
+                .exchange(USERS_ENDPOINT + "/1", HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -130,7 +128,7 @@ public class UserControllerTest {
                 .password("Test124123").build();
 
         final ResponseEntity responseEntity = this.restTemplate
-                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
+                .exchange(USERS_ENDPOINT + "/1", HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -144,7 +142,7 @@ public class UserControllerTest {
                 .password("Test124123").build();
 
         final ResponseEntity responseEntity = this.restTemplate
-                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
+                .exchange(USERS_ENDPOINT + "/1", HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -158,7 +156,7 @@ public class UserControllerTest {
                 .password("Test124123").build();
 
         final ResponseEntity responseEntity = this.restTemplate
-                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
+                .exchange(USERS_ENDPOINT + "/1", HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -172,7 +170,7 @@ public class UserControllerTest {
                 .password(null).build();
 
         final ResponseEntity responseEntity = this.restTemplate
-                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
+                .exchange(USERS_ENDPOINT + "/1", HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -186,7 +184,7 @@ public class UserControllerTest {
                 .password("1234").build();
 
         final ResponseEntity responseEntity = this.restTemplate
-                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
+                .exchange(USERS_ENDPOINT + "/1", HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
@@ -200,7 +198,7 @@ public class UserControllerTest {
                 .password(String.join("", Collections.nCopies(51, "a"))).build();
 
         final ResponseEntity responseEntity = this.restTemplate
-                .exchange(USERS_ENDPOINT, HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
+                .exchange(USERS_ENDPOINT + "/1", HttpMethod.PUT, new HttpEntity<>(userRequest, null), Void.class);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
