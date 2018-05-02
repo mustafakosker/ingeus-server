@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.format.DateTimeFormatter;
 
-import static com.ingeus.util.ApiConstants.DATE_FORMAT;
+import static com.ingeus.util.ApiConstants.RESPONSE_DATE_FORMAT;
 
 @Data
 @NoArgsConstructor
@@ -31,7 +31,7 @@ public class UserResponse {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .dateOfBirth(user.getDateOfBirth()
-                        .format(DateTimeFormatter.ofPattern(DATE_FORMAT)))
+                        .format(DateTimeFormatter.ofPattern(RESPONSE_DATE_FORMAT)))
                 .build();
     }
 }

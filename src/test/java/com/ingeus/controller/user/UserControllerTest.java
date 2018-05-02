@@ -61,7 +61,7 @@ public class UserControllerTest {
         assertThat(userResponse.getFirstName()).isEqualTo(userRequest.getFirstName());
         assertThat(userResponse.getLastName()).isEqualTo(userRequest.getLastName());
         assertThat(userResponse.getDateOfBirth())
-                .isEqualTo(userRequest.getDateOfBirth().format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
+                .isEqualTo(userRequest.getDateOfBirth().format(DateTimeFormatter.ofPattern(RESPONSE_DATE_FORMAT)));
     }
 
     @Test
