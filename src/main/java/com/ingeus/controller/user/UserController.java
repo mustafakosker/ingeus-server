@@ -2,7 +2,6 @@ package com.ingeus.controller.user;
 
 import com.ingeus.controller.user.request.UserRequest;
 import com.ingeus.controller.user.response.UserResponse;
-import com.ingeus.exception.NotFoundException;
 import com.ingeus.repository.user.UserRepository;
 import com.ingeus.repository.user.model.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,21 +30,6 @@ public class UserController {
         final User savedUser = userRepository.save(createUser(userRequest));
 
         return UserResponse.fromUser(savedUser);
-    }
-
-    @PutMapping("/{id}")
-    public void updateUser(@RequestBody @Valid @NotNull UserRequest userRequest,
-                           @PathVariable("id") Long id) {
-        userRequest.setId(id);
-
-        userRepository.save(createUser(userRequest));
-    }
-
-    @GetMapping("/{id}")
-    public UserResponse getUser(@PathVariable("id") Long id) {
-        return userRepository.findById(id)
-                .map(UserResponse::fromUser)
-                .orElseThrow(() -> new NotFoundException("No user found with given id"));
     }
 
     private User createUser(UserRequest userRequest){
